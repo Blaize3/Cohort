@@ -1,0 +1,60 @@
+{
+  "name": "cohort",
+  "version": "1.0.0",
+  "description": "A project management and collaborative tool for a project team.",
+  "main": "./server/app.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon --watch ./server --exec ./node_modules/.bin/babel-node -- ./server/app.js",
+    "client": "npm start --prefix client",
+    "client-install": "cd client && npm install",
+    "cohortdb": "dropdb --if-exists cohort_application_db && createdb cohort_application_db",
+    "cohorttestdb": "dropdb --if-exists cohort_application_test_db && createdb cohort_application_test_db",
+    "createdb": "npm run cohortdb && npm run cohorttestdb",
+    "reset-dev-db": "./node_modules/.bin/sequelize db:migrate:undo:all",
+    "migrate-dev-db": "./node_modules/.bin/sequelize db:migrate",
+    "seed-dev-db": "./node_modules/.bin/sequelize db:seed:all",
+    "start-server": "npm run reset-dev-db && npm run migrate-dev-db && npm run seed-dev-db && npm run server",
+    "test-reset-db": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/sequelize db:migrate:undo:all",
+    "test-migrate-db": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/sequelize db:migrate",
+    "test-seed-db": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/sequelize db:seed:all",
+    "test-script": "./node_modules/.bin/cross-env NODE_ENV=test nyc mocha --require babel-polyfill --compilers js:babel-register ./server/test/test.js --exit",
+    "start-test": "npm run test-reset-db && npm run test-migrate-db && npm run test-seed-db && npm run test-script"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blaize3/cohort.git"
+  },
+  "keywords": [],
+  "author": "Ode Akugbe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Blaize3/cohort/issues"
+  },
+  "homepage": "https://github.com/Blaize3/cohort#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "body-parser": "^1.18.3",
+    "chai": "^4.1.2",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mocha": "^5.2.0",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.5",
+    "nyc": "^12.0.2",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.38.0",
+    "supertest": "^3.1.0",
+    "validator": "^10.4.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0"
+  }
+}
