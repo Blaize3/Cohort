@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // All routes will be handled here!!!
 //  00000000000000000000000000000000000000000000000000000000000000000000000
-    router(app);
+router(app);
 //  00000000000000000000000000000000000000000000000000000000000000000000000
 
 // routes exception handler

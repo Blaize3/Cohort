@@ -8,5 +8,9 @@ export default (app) => {
     });
   });
 
+  app.get('/api/v1/users', UsersController.getAllUsers);
+
   app.post('/api/v1/users/signup', UsersController.signup);
+
+  app.post('/api/v1/users/signin', UsersController.signin);
 };

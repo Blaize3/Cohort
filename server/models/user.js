@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Firstname can only accept characters and white spaces.'
         },
         len: {
-          args: [2, 30],
+          args: [3, 30],
           msg: 'Firstname must have atlest 3 or more characters.'
         }
       }
