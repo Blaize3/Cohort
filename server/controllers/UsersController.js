@@ -38,6 +38,38 @@ class UsersController {
     }
 
     // validate form firstname
+    if (!validator.isAlpha(formObject.firstname, 'en-GB') || !validator.isAlpha(formObject.firstname, 'en-US')) {
+      errors.push({ 'firstname error': 'invalid firstname. firstname must contain only letters' });
+    } else if (validator.isEmpty(formObject.firstname)) {
+      errors.push({ 'firstname error': 'firstname is required!' });
+    } else if (formObject.firstname.length < 3) {
+      errors.push({ 'firstname error': 'firstname must contain at least 3 characters!' });
+    }
+
+    // validate form lastname
+    if (!validator.isAlpha(formObject.lastname, 'en-GB') || !validator.isAlpha(formObject.lastname, 'en-US')) {
+      errors.push({ 'lastname error': 'invalid lastname. lastname must contain only letters' });
+    } else if (validator.isEmpty(formObject.lastname)) {
+      errors.push({ 'lastname error': 'lastname is required!' });
+    } else if (formObject.lastname.length < 3) {
+      errors.push({ 'lastname error': 'lastname must contain at least 3 characters!' });
+    }
+
+    // validate form phone
+    if (!validator.isNumeric(formObject.phone)) {
+      errors.push({ 'phone error': 'invalid phone number. phone number must contain only digits' });
+    } else if (validator.isEmpty(formObject.phone)) {
+      errors.push({ 'phone error': 'phone number is required!' });
+    } else if (formObject.phone.length < 11) {
+      errors.push({ 'phone error': 'phone number must contain at least 11 digits!' });
+    }
+
+    if (errors.length > 0) {
+      return res.status(400).send({
+        message: `${errors.length} ${(errors.length === 1 ? 'field' : 'fields')} had validation ${(errors.length === 1 ? 'error' : 'errors')}.`,
+        details: errors
+      });
+    }
 
     // check password
 
