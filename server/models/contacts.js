@@ -1,42 +1,41 @@
-
 module.exports = (sequelize, DataTypes) => {
-  const Project = sequelize.define('Project', {
-    creator: {
+  const Contacts = sequelize.define('Contacts', {
+    initiator: {
       type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
           args: true,
-          msg: 'creator is required!'
+          msg: 'initiator is required!'
         },
         notEmpty: {
           args: true,
-          msg: 'creator is required!'
+          msg: 'initiator is required!'
         },
         isInt: {
           args: true,
-          msg: 'creator must be an integer!'
+          msg: 'initiator must be an integer!'
         }
       }
     },
-    project_id: {
+    recipient: {
       type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
           args: true,
-          msg: 'project id is required!'
+          msg: 'recipient is required!'
         },
         notEmpty: {
           args: true,
-          msg: 'project id is required!'
+          msg: 'recipient is required!'
         },
         isInt: {
           args: true,
-          msg: 'project id must be an integer!'
+          msg: 'recipient must be an integer!'
         }
       }
     }
   });
-  return Project;
+  return Contacts;
 };

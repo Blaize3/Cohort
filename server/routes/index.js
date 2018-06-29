@@ -1,4 +1,4 @@
-import UsersController from '../controllers/UsersController';
+// import UsersController from '../controllers/UsersController';
 
 export default (app) => {
   // default routes handlers
@@ -7,10 +7,4 @@ export default (app) => {
       message: 'Welcome to Cohort API services...'
     });
   });
-
-  app.get('/api/v1/users', UsersController.getAllUsers);
-
-  app.post('/api/v1/users/signup', UsersController.signup);
-
-  app.post('/api/v1/users/signin', UsersController.signin);
 };

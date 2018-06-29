@@ -1,41 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Group = sequelize.define('Group', {
-    creator: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: {
-          args: true,
-          msg: 'group creator is required!'
-        },
-        notEmpty: {
-          args: true,
-          msg: 'group creator is required!'
-        },
-        isInt: {
-          args: true,
-          msg: 'group creator must be an integer!'
-        }
-      }
-    },
-    owner: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: {
-          args: true,
-          msg: 'group owner is required!'
-        },
-        notEmpty: {
-          args: true,
-          msg: 'group owner is required!'
-        },
-        isInt: {
-          args: true,
-          msg: 'group owner must be an integer!'
-        }
-      }
-    },
+  const GroupMembers = sequelize.define('GroupMembers', {
     group_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -53,7 +17,43 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'group id must be an integer!'
         }
       }
+    },
+    user_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'user id is required!'
+        },
+        notEmpty: {
+          args: true,
+          msg: 'user id is required!'
+        },
+        isInt: {
+          args: true,
+          msg: 'user id must be an integer!'
+        }
+      }
+    },
+    role_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'role id is required!'
+        },
+        notEmpty: {
+          args: true,
+          msg: 'role id is required!'
+        },
+        isInt: {
+          args: true,
+          msg: 'role id must be an integer!'
+        }
+      }
     }
   });
-  return Group;
+  return GroupMembers;
 };

@@ -1,59 +1,59 @@
 module.exports = (sequelize, DataTypes) => {
-  const Group = sequelize.define('Group', {
-    creator: {
+  const Conversations = sequelize.define('Conversations', {
+    initiator: {
       type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
           args: true,
-          msg: 'group creator is required!'
+          msg: 'initiator is required!'
         },
         notEmpty: {
           args: true,
-          msg: 'group creator is required!'
+          msg: 'initiator is required!'
         },
         isInt: {
           args: true,
-          msg: 'group creator must be an integer!'
+          msg: 'initiator must be an integer!'
         }
       }
     },
-    owner: {
+    recipient: {
       type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
           args: true,
-          msg: 'group owner is required!'
+          msg: 'recipient is required!'
         },
         notEmpty: {
           args: true,
-          msg: 'group owner is required!'
+          msg: 'recipient is required!'
         },
         isInt: {
           args: true,
-          msg: 'group owner must be an integer!'
+          msg: 'recipient must be an integer!'
         }
       }
     },
-    group_id: {
+    message_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
           args: true,
-          msg: 'group id is required!'
+          msg: 'message id is required!'
         },
         notEmpty: {
           args: true,
-          msg: 'group id is required!'
+          msg: 'message id is required!'
         },
         isInt: {
           args: true,
-          msg: 'group id must be an integer!'
+          msg: 'message id must be an integer!'
         }
       }
     }
   });
-  return Group;
+  return Conversations;
 };

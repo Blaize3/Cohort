@@ -1,59 +1,60 @@
+
 module.exports = (sequelize, DataTypes) => {
-  const Group = sequelize.define('Group', {
-    creator: {
+  const ProjectMembers = sequelize.define('ProjectMembers', {
+    project_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
           args: true,
-          msg: 'group creator is required!'
+          msg: 'project id is required!'
         },
         notEmpty: {
           args: true,
-          msg: 'group creator is required!'
+          msg: 'project id is required!'
         },
         isInt: {
           args: true,
-          msg: 'group creator must be an integer!'
+          msg: 'project id must be an integer!'
         }
       }
     },
-    owner: {
+    user_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
           args: true,
-          msg: 'group owner is required!'
+          msg: 'user id is required!'
         },
         notEmpty: {
           args: true,
-          msg: 'group owner is required!'
+          msg: 'user id is required!'
         },
         isInt: {
           args: true,
-          msg: 'group owner must be an integer!'
+          msg: 'user id must be an integer!'
         }
       }
     },
-    group_id: {
+    role_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
           args: true,
-          msg: 'group id is required!'
+          msg: 'role id is required!'
         },
         notEmpty: {
           args: true,
-          msg: 'group id is required!'
+          msg: 'role id is required!'
         },
         isInt: {
           args: true,
-          msg: 'group id must be an integer!'
+          msg: 'role id must be an integer!'
         }
       }
     }
   });
-  return Group;
+  return ProjectMembers;
 };

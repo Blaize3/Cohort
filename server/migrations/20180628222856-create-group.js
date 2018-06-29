@@ -1,4 +1,3 @@
-
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('Groups', {
     id: {
@@ -7,32 +6,16 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    group_name: {
-      allowNull: false,
-      type: Sequelize.STRING
-    },
-    theme: {
-      allowNull: true,
-      type: Sequelize.TEXT
-    },
-    image_url: {
-      allowNull: false,
-      type: Sequelize.STRING
-    },
-    member_count: {
+    creator: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
-    created_by: {
-      allowNull: false,
-      type: Sequelize.INTEGER
-    },
-    owned_by: {
+    owner: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
     group_id: {
-      allowNull: true,
+      allowNull: false,
       type: Sequelize.INTEGER
     },
     createdAt: {

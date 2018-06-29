@@ -1,21 +1,20 @@
-
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('GroupMembers', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Conversations', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    group_id: {
+    initiator: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
-    user_id: {
+    recipient: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
-    role_id: {
+    message_id: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
@@ -28,5 +27,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: queryInterface => queryInterface.dropTable('GroupMembers')
+  down: queryInterface => queryInterface.dropTable('Conversations')
 };

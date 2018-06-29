@@ -1,4 +1,3 @@
-
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('Projects', {
     id: {
@@ -7,19 +6,7 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    project_name: {
-      allowNull: false,
-      type: Sequelize.STRING
-    },
-    image_url: {
-      allowNull: false,
-      type: Sequelize.STRING
-    },
-    member_count: {
-      allowNull: false,
-      type: Sequelize.INTEGER
-    },
-    created_by: {
+    creator: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
