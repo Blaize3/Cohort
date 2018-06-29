@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Entity = sequelize.define('Entity', {
     type_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -19,17 +19,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     code_number: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: null,
       validate: {
-        notNull: {
-          args: true,
-          msg: 'code number is required!'
-        },
-        notEmpty: {
-          args: true,
-          msg: 'code number is required!'
-        },
         isInt: {
           args: true,
           msg: 'code number must be an integer!'
@@ -37,5 +30,22 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+  Entity.associate = (models) => {
+    Entity.hasMany(models.User, {
+      foreignKey: 'user_id',
+      as: 'user_id',
+    });
+
+    Entity.hasMany(models.Project, {
+      foreignKey: 'project_id',
+      as: 'project_id',
+    });
+
+    Entity.hasMany(models.Group, {
+      foreignKey: 'group_id',
+      as: 'group_id',
+    });
+  };
   return Entity;
 };

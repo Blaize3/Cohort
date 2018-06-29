@@ -6,11 +6,39 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
+    project_id: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
+      onDelete: 'CASCADE',
+      references: {
+        model: 'Entity',
+        key: 'id',
+        as: 'project_id',
+      }
+    },
     creator: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
+      onDelete: 'CASCADE',
+      references: {
+        model: 'User',
+        key: 'id',
+        as: 'creator',
+      }
+    },
+    name: {
+      allowNull: false,
+      type: Sequelize.STRING
+    },
+    image_url: {
+      allowNull: false,
+      type: Sequelize.STRING
+    },
+    member_count: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
-    project_id: {
+    active_users: {
       allowNull: false,
       type: Sequelize.INTEGER
     },

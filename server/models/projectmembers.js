@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const ProjectMembers = sequelize.define('ProjectMembers', {
     project_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     user_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     role_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -56,5 +56,22 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+  ProjectMembers.associate = (models) => {
+    ProjectMembers.hasMany(models.User, {
+      foreignKey: 'user_id',
+      as: 'project_member',
+    });
+
+    ProjectMembers.hasMany(models.Project, {
+      foreignKey: 'project_id',
+      as: 'project',
+    });
+
+    ProjectMembers.hasMany(models.Role, {
+      foreignKey: 'role_id',
+      as: 'user_role',
+    });
+  };
   return ProjectMembers;
 };

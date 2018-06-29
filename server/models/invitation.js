@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Invitation = sequelize.define('Invitation', {
     project_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {

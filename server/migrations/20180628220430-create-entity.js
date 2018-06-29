@@ -11,7 +11,7 @@ module.exports = {
       type: Sequelize.INTEGER
     },
     code_number: {
-      allowNull: false,
+      allowNull: true,
       type: Sequelize.INTEGER
     },
     createdAt: {

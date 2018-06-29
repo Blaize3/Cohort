@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const GroupMembers = sequelize.define('GroupMembers', {
     group_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     user_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     role_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -55,5 +55,22 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+  GroupMembers.associate = (models) => {
+    GroupMembers.hasMany(models.User, {
+      foreignKey: 'user_id',
+      as: 'group_member',
+    });
+
+    GroupMembers.hasMany(models.Group, {
+      foreignKey: 'group_id',
+      as: 'group',
+    });
+
+    GroupMembers.hasMany(models.Role, {
+      foreignKey: 'role_id',
+      as: 'user_role',
+    });
+  };
   return GroupMembers;
 };

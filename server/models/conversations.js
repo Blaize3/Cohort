@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Conversations = sequelize.define('Conversations', {
     initiator: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     recipient: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     message_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {

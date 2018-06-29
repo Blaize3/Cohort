@@ -1,13 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
   const Connection = sequelize.define('Connection', {
     initiator: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
           args: true,
           msg: 'initiator is required!'
-        },            
+        },
         notEmpty: {
           args: true,
           msg: 'initiator is required!'
@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         isInt: {
           args: true,
           msg: 'initiator must be an integer!'
-        }  
+        }
       }
     },
     recipient: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {

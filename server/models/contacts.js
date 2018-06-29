@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Contacts = sequelize.define('Contacts', {
     initiator: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     recipient: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
