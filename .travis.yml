@@ -11,7 +11,7 @@ services:
 
 env:
   global:
-     - CC_TEST_REPORTER_ID=0098f919ab459dca581b15df4e977115faafd5ed7c1b786e0b4d9f2dd30a7a50
+     - CC_TEST_REPORTER_ID=3a583cf0d38ca19f23ddce92853ba43474a361ce106f3ef7b316fd5296d9ec58
 
 before_script:
    - psql -c 'create database cohort_application_test_db;' -U postgres
