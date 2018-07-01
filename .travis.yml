@@ -1,0 +1,23 @@
+language: node_js
+
+node_js:
+   - "stable"
+
+install:
+   - npm install
+
+services:
+   - postgresql
+
+env:
+  global:
+     - CC_TEST_REPORTER_ID=0098f919ab459dca581b15df4e977115faafd5ed7c1b786e0b4d9f2dd30a7a50
+
+before_script:
+   - psql -c 'create database cohort_application_test_db;' -U postgres
+
+script:
+   - npm run start-test
+
+after_success:
+   - npm run coverage

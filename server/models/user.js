@@ -1,8 +1,7 @@
-
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     user_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       validate: {
         notNull: {
@@ -13,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'user id is required!'
         },
-        isInt: {
-          args: true,
-          msg: 'user id must be an integer!'
+        isUUID: {
+          args: 4,
+          msg: 'user id must be a UUID!'
         }
       }
     },
@@ -234,28 +233,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
-
-  User.associate = (models) => {
-    User.hasMany(models.Project, {
-      foreignKey: 'creator',
-      as: 'project',
-    });
-
+  User.associate = function (models) {
+    // associations can be defined here
     User.belongsTo(models.Entity, {
       foreignKey: 'user_id',
       onDelete: 'CASCADE',
     });
-
-    User.belongsTo(models.ProjectMembers, {
-      foreignKey: 'user_id',
-      onDelete: 'CASCADE',
-    });
-
-    User.belongsTo(models.GroupMembers, {
-      foreignKey: 'user_id',
-      onDelete: 'CASCADE',
-    });
   };
-
   return User;
 };

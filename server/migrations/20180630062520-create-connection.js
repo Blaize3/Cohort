@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Conversations', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Connections', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -8,21 +8,15 @@ module.exports = {
     },
     initiator: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: Sequelize.UUID
     },
     recipient: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: Sequelize.UUID
     },
-    message_id: {
+    status: {
       allowNull: false,
-      type: Sequelize.INTEGER,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Messages',
-        key: 'id',
-        as: 'message_id',
-      }
+      type: Sequelize.STRING
     },
     createdAt: {
       allowNull: false,
@@ -33,5 +27,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: queryInterface => queryInterface.dropTable('Conversations')
+  down: queryInterface => queryInterface.dropTable('Connections')
 };

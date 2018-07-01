@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Group = sequelize.define('Group', {
     group_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       validate: {
         notNull: {
@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'group id is required!'
         },
-        isInt: {
-          args: true,
-          msg: 'group id must be an integer!'
+        isUUID: {
+          args: 4,
+          msg: 'group id must be a UUID!'
         }
       }
     },
@@ -138,20 +138,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
-
-  Group.associate = (models) => {
+  Group.associate = function (models) {
+    // associations can be defined here
     Group.belongsTo(models.Entity, {
       foreignKey: 'group_id',
-      onDelete: 'CASCADE',
-    });
-
-    Group.belongsTo(models.User, {
-      foreignKey: 'creator',
-      onDelete: 'CASCADE',
-    });
-
-    Group.belongsTo(models.ProjectMembers, {
-      foreignKey: 'owner',
       onDelete: 'CASCADE',
     });
   };

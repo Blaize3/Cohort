@@ -55,22 +55,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
-
-  GroupMembers.associate = (models) => {
-    GroupMembers.hasMany(models.User, {
-      foreignKey: 'user_id',
-      as: 'group_member',
-    });
-
-    GroupMembers.hasMany(models.Group, {
-      foreignKey: 'group_id',
-      as: 'group',
-    });
-
-    GroupMembers.hasMany(models.Role, {
-      foreignKey: 'role_id',
-      as: 'user_role',
-    });
+  GroupMembers.associate = function (models) {
+    // associations can be defined here
   };
   return GroupMembers;
 };

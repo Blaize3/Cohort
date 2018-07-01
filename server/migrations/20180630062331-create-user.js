@@ -8,12 +8,12 @@ module.exports = {
     },
     user_id: {
       allowNull: false,
-      type: Sequelize.INTEGER,
+      type: Sequelize.UUID,
       onDelete: 'CASCADE',
       references: {
-        model: 'Entity',
+        model: 'Entities',
         key: 'id',
-        as: 'user_id'
+        as: 'user_id',
       }
     },
     lastname: {

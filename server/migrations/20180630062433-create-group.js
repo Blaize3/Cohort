@@ -1,30 +1,28 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Projects', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Groups', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    project_id: {
+    group_id: {
       allowNull: false,
-      type: Sequelize.INTEGER,
+      type: Sequelize.UUID,
       onDelete: 'CASCADE',
       references: {
-        model: 'Entity',
+        model: 'Entities',
         key: 'id',
-        as: 'project_id',
+        as: 'group_id',
       }
     },
     creator: {
       allowNull: false,
-      type: Sequelize.INTEGER,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'User',
-        key: 'id',
-        as: 'creator',
-      }
+      type: Sequelize.INTEGER
+    },
+    owner: {
+      allowNull: false,
+      type: Sequelize.INTEGER
     },
     name: {
       allowNull: false,
@@ -33,6 +31,10 @@ module.exports = {
     image_url: {
       allowNull: false,
       type: Sequelize.STRING
+    },
+    purpose: {
+      allowNull: false,
+      type: Sequelize.TEXT
     },
     member_count: {
       allowNull: false,
@@ -51,5 +53,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: queryInterface => queryInterface.dropTable('Projects')
+  down: queryInterface => queryInterface.dropTable('Groups')
 };

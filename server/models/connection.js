@@ -1,7 +1,8 @@
+
 module.exports = (sequelize, DataTypes) => {
   const Connection = sequelize.define('Connection', {
     initiator: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       validate: {
         notNull: {
@@ -12,14 +13,14 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'initiator is required!'
         },
-        isInt: {
+        isUUID: {
           args: true,
-          msg: 'initiator must be an integer!'
+          msg: 'initiator must be a UUID!'
         }
       }
     },
     recipient: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       validate: {
         notNull: {
@@ -30,9 +31,9 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'recipient is required!'
         },
-        isInt: {
+        isUUID: {
           args: true,
-          msg: 'recipient must be an integer!'
+          msg: 'recipient must be a UUID!'
         }
       }
     },
@@ -51,5 +52,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  Connection.associate = (models) => {
+    // associations can be defined here
+  };
   return Connection;
 };

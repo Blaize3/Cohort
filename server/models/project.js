@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Project = sequelize.define('Project', {
     project_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       validate: {
         notNull: {
@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'project id is required!'
         },
-        isInt: {
-          args: true,
-          msg: 'project id must be an integer!'
+        isUUID: {
+          args: 4,
+          msg: 'project id must be a UUID!'
         }
       }
     },
@@ -105,19 +105,9 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
-
-  Project.associate = (models) => {
+  Project.associate = function (models) {
+    // associations can be defined here
     Project.belongsTo(models.Entity, {
-      foreignKey: 'project_id',
-      onDelete: 'CASCADE',
-    });
-
-    Project.belongsTo(models.User, {
-      foreignKey: 'creator',
-      onDelete: 'CASCADE',
-    });
-
-    Project.belongsTo(models.ProjectMembers, {
       foreignKey: 'project_id',
       onDelete: 'CASCADE',
     });

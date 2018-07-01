@@ -29,5 +29,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  Messages.associate = function (models) {
+    // associations can be defined here
+    Messages.hasMany(models.Conversations, {
+      foreignKey: 'message_id',
+      as: 'messages',
+    });
+  };
   return Messages;
 };

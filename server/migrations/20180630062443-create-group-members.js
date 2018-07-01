@@ -8,33 +8,15 @@ module.exports = {
     },
     group_id: {
       allowNull: false,
-      type: Sequelize.INTEGER,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Group',
-        key: 'id',
-        as: 'group_id',
-      }
+      type: Sequelize.INTEGER
     },
     user_id: {
       allowNull: false,
-      type: Sequelize.INTEGER,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'User',
-        key: 'id',
-        as: 'user_id',
-      }
+      type: Sequelize.INTEGER
     },
     role_id: {
       allowNull: false,
-      type: Sequelize.INTEGER,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Role',
-        key: 'id',
-        as: 'role_id',
-      }
+      type: Sequelize.INTEGER
     },
     createdAt: {
       allowNull: false,

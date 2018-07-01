@@ -9,7 +9,7 @@ import router from './routes/index';
 
 // creating app application
 const app = express();
-const port = parseInt(process.env.PORT, 10) || 8080;
+const port = parseInt(process.env.PORT, 10) || 5000;
 let server = null;
 
 // logging to console
@@ -57,7 +57,7 @@ server = http.createServer(app);
 
 // Running server
 server.listen(port, () => {
-  console.log(`Cohort Server is running on localhost:${port}`);
+  console.log(`Cohort Application Server started ...`);
 });
 
 export default app;

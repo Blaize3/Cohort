@@ -1,22 +1,22 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Connections', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('ProjectMembers', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    initiator: {
+    project_id: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
-    recipient: {
+    user_id: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
-    status: {
+    role_id: {
       allowNull: false,
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     },
     createdAt: {
       allowNull: false,
@@ -27,5 +27,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: queryInterface => queryInterface.dropTable('Connections')
+  down: queryInterface => queryInterface.dropTable('ProjectMembers')
 };

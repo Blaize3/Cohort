@@ -1,18 +1,18 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Entities', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Contacts', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    type_id: {
+    initiator: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: Sequelize.UUID
     },
-    code_number: {
-      allowNull: true,
-      type: Sequelize.INTEGER
+    recipient: {
+      allowNull: false,
+      type: Sequelize.UUID
     },
     createdAt: {
       allowNull: false,
@@ -23,5 +23,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: queryInterface => queryInterface.dropTable('Entities')
+  down: queryInterface => queryInterface.dropTable('Contacts')
 };

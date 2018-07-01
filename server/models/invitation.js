@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
   const Invitation = sequelize.define('Invitation', {
     project_id: {
@@ -84,5 +83,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  Invitation.associate = function (models) {
+    // associations can be defined here
+  };
   return Invitation;
 };

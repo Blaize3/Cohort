@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('ProjectMembers', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Projects', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -8,33 +8,33 @@ module.exports = {
     },
     project_id: {
       allowNull: false,
-      type: Sequelize.INTEGER,
+      type: Sequelize.UUID,
       onDelete: 'CASCADE',
       references: {
-        model: 'Project',
+        model: 'Entities',
         key: 'id',
         as: 'project_id',
       }
     },
-    user_id: {
+    creator: {
       allowNull: false,
       type: Sequelize.INTEGER,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'User',
-        key: 'id',
-        as: 'user_id',
-      }
     },
-    role_id: {
+    name: {
       allowNull: false,
-      type: Sequelize.INTEGER,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Role',
-        key: 'id',
-        as: 'role_id',
-      }
+      type: Sequelize.STRING
+    },
+    image_url: {
+      allowNull: false,
+      type: Sequelize.STRING
+    },
+    member_count: {
+      allowNull: false,
+      type: Sequelize.INTEGER
+    },
+    active_users: {
+      allowNull: false,
+      type: Sequelize.INTEGER
     },
     createdAt: {
       allowNull: false,
@@ -45,5 +45,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: queryInterface => queryInterface.dropTable('ProjectMembers')
+  down: queryInterface => queryInterface.dropTable('Projects')
 };

@@ -1,5 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Entity = sequelize.define('Entity', {
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      autoIncrement: false,  
+    },
     type_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -30,21 +37,26 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
-
   Entity.associate = (models) => {
+    // associations can be defined here;
+    Entity.belongs(models.EntityType, {
+      foreignKey: 'type_id',
+      onDelete: 'CASCADE',
+    });
+
     Entity.hasMany(models.User, {
       foreignKey: 'user_id',
-      as: 'user_id',
+      as: 'users',
     });
 
     Entity.hasMany(models.Project, {
       foreignKey: 'project_id',
-      as: 'project_id',
+      as: 'projects',
     });
 
     Entity.hasMany(models.Group, {
       foreignKey: 'group_id',
-      as: 'group_id',
+      as: 'groups',
     });
   };
   return Entity;

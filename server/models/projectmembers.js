@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
   const ProjectMembers = sequelize.define('ProjectMembers', {
     project_id: {
@@ -56,22 +55,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
-
-  ProjectMembers.associate = (models) => {
-    ProjectMembers.hasMany(models.User, {
-      foreignKey: 'user_id',
-      as: 'project_member',
-    });
-
-    ProjectMembers.hasMany(models.Project, {
-      foreignKey: 'project_id',
-      as: 'project',
-    });
-
-    ProjectMembers.hasMany(models.Role, {
-      foreignKey: 'role_id',
-      as: 'user_role',
-    });
+  ProjectMembers.associate = function (models) {
+    // associations can be defined here
   };
   return ProjectMembers;
 };

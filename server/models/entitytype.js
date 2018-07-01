@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
   const EntityType = sequelize.define('EntityType', {
     type_name: {
@@ -38,5 +37,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  EntityType.associate = (models) => {
+    // associations can be defined here
+    EntityType.hasMany(models.Entity, {
+      foreignKey: 'type_id',
+      as: 'entityTypes',
+    });
+  };
   return EntityType;
 };
